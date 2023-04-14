@@ -1,0 +1,21 @@
+Tendo em vista o fato de que a cada execução do algoritmo, no cenário em que caso o elemento não seja encontrado metade da lista é descartada, então:
+
+A cada execução o número de passos restantes diminui.
+
+E sabendo que o logaritmo pode ser entendido como o "oposto" da potenciação, que por exemplo:
+O logaritmo de 8 na base 2 seria 3, ou seja: log2(8) = 3 graças ao fato de que 2 elevado a 3 é igual a 8.
+
+Também é concebivel definir logaritmo como a quantidade de vezes que podemos dividir um valor por outro até que ele chegue em 1.
+Utilizando do mesmo exemplo de anteriormente:
+
+log2(8) = 3, pois:
+
+8 / 2 = 4   (1 vez)
+4 / 2 = 2   (2 vezes)
+2 / 2 = 1   (3 vezes), ou seja foi necessário dividir o valor 8 três vezes por 2 até que o valor restante resultasse em 1. 
+                        Sendo assim dessa forma também foi possivel obter o resultado do logaritmo de 8 na base 2.
+
+Portanto O(log n), ou mais precisamente O(log2(n)) ou: O log de n na base 2
+resultaria na quantidade de vezes que n foi dividido por 2 (conforme acontece momento de cada busca em que o array é cortado pela metade)
+até que se encontre enfim o valor desejado, que é aonde a divisão resultaria em 1.
+  
