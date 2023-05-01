@@ -11,27 +11,23 @@ void printArray(vector<int> &lista){
     cout << endl;
 }
 
-void selectionSort(vector<int> &lista){
-    cout << "Selection Sort: ";
+void selectionSort(vector<int> lista){
     int n = lista.size();
-    int aux = 0;
-
-    for(int i = 0; i < n; i++){
-        int menor = lista[i];
-        for(int c = i; c < n; c++){
-            if(lista[c] < menor){
-                aux = lista[i];
-                lista[i] = lista[c];
+    int aux;
+    for(int indiceMenor = 0; indiceMenor < n; indiceMenor++){
+        for(int c = indiceMenor; c < n; c++){
+            if(lista[c] < lista[indiceMenor]){
+                aux = lista[indiceMenor];
+                lista[indiceMenor] = lista[c];
                 lista[c] = aux;
-            }        
+            }
         }
     }
     printArray(lista);
-
 }
 
 int main(){
-    vector<int> lista = {1, 2, 3, 4, 5, 6, 7};
+    vector<int> lista = {5, 4, 3, 2, 1};
     printArray(lista);
     selectionSort(lista);
 

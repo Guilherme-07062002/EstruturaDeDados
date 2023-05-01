@@ -12,15 +12,15 @@ void printArray(vector<int> &lista){
 }
 
 void insertionSort(vector<int> lista){
-    cout << "Insertion Sort: ";
     int n = lista.size();
-    int aux = 0;
-    for(int i = 0; i < (n - 1); i++){
-        while(i >= 0 && lista[i + 1] < lista[i]){
-            aux = lista[i];
-            lista[i] = lista[i + 1];
-            lista[i + 1] = aux;
-            i--;
+    int aux;
+    for(int i = 1; i < n; i++){
+        for(int c = i; c > 0; c--){
+            if(lista[c] < lista[c - 1]){
+                aux = lista[c];
+                lista[c] = lista[c - 1];
+                lista[c - 1] = aux;
+            }
         }
     }
     printArray(lista);

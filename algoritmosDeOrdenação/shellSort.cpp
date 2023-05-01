@@ -11,18 +11,18 @@ void printArray(vector<int> &lista){
     cout << endl;
 }
 
-void shellSort(int arr[], int n) {
-    for (int gap = n/2; gap > 0; gap /= 2) {
-        for (int i = gap; i < n; i++) {
-            int temp = arr[i];
-            int j = i;
-            while (j >= gap && arr[j - gap] > temp) {
-                arr[j] = arr[j - gap];
-                j -= gap;
+void shellSort(vector<int> lista){
+    int tamanho = lista.size();
+    for(int intervalo = tamanho / 2; intervalo > 0; intervalo /= 2){
+        for(int i = intervalo; i < tamanho; i++){
+            int valor_atual = lista[i];
+            for(int j = i; j >= intervalo && lista[j - intervalo] > valor_atual; j-= intervalo){
+                lista[j] = lista[j - intervalo];
+                lista[j - intervalo] = valor_atual;
             }
-            arr[j] = temp;
         }
     }
+    printArray(lista);
 }
 
 int main(){

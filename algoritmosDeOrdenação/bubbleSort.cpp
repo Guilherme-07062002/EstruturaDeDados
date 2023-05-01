@@ -10,22 +10,18 @@ void printLista(vector<int> lista){
     cout << endl;
 }
 
-
 void bubbleSort(vector<int> lista){
-    cout << "Bubble Sort: ";
     int n = lista.size();
-    int aux = 0;
-
-    for(int i = 0; i < (n - 1); i++){
+    int aux;
+    for(int i = 0; i < n; i++){
         for(int c = 0; c < (n - 1); c++){
-                if(lista[c + 1] < lista[c]){
-                    aux = lista[c];               
-                    lista[c] = lista[c + 1];
-                    lista[c + 1] = aux;
-                }
+            if(lista[c] > lista[c + 1]){
+                aux = lista[c];
+                lista[c] = lista[c + 1];
+                lista[c + 1] = aux;
+            }
         }
     }
-
     printLista(lista);
 }
 
