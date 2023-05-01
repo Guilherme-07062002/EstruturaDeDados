@@ -20,6 +20,8 @@ $  ./<nome-do-executável>
   <li><b>Insertion Sort</b></li>
   <p>De certa forma semelhante o bubble sort, a diferença é que ele realiza comparações consecutivas, checando se o valor atual é menor que cada elemento
   anterior a ele na lista.</p>
+  <li><b>Shell Sort</b></li>
+  <p>Primeiramente é obtido o 'gap', que consiste em (n / 2), aonde n é o tamanho do array, em seguida é realizado a comparação entre o elemento atual e o elemento que está a um gap de distância do mesmo, depois que essa checagem é feita em toda a lista, reinicia-se novamente o processo dividindo novamente o valor de gap por 2 dessa forma gap = ((n / 2) / 2) ou (n / 4), esse processo é repetido quantas vezes for necessário até que em determinado momento gap seja 1, e a lista for ordenada.</p>
 </ol>
 
 #### Busca
