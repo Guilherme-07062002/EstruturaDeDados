@@ -14,16 +14,19 @@ void printArray(vector<int> &lista){
 void insertionSort(vector<int> lista){
     int n = lista.size();
     int aux;
-    for(int i = 1; i < n; i++){
-        for(int c = i; c > 0; c--){
-            if(lista[c] < lista[c - 1]){
-                aux = lista[c];
-                lista[c] = lista[c - 1];
-                lista[c - 1] = aux;
+    for(int i = 0; i < n; i++){
+        for(int c = i; c < n; c++){
+            for(int d = c; d > 0; d--){
+                if(lista[d - 1] > lista[d]){
+                    aux = lista[d - 1];
+                    lista[d - 1] = lista[d];
+                    lista[d] = aux;
+                }
             }
         }
     }
     printArray(lista);
+    
 }
 
 int main(){

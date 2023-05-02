@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void printLista(vector<int> lista){
+void printArray(vector<int> lista){
     for(int i = 0; i < lista.size(); i++){
         cout << lista[i] << " ";
     }
@@ -22,12 +22,12 @@ void bubbleSort(vector<int> lista){
             }
         }
     }
-    printLista(lista);
+    printArray(lista);
 }
 
 int main(){
     vector<int> lista = {5, 4, 3, 2, 1};
-    printLista(lista);
+    printArray(lista);
     bubbleSort(lista);    
 
     return 0;

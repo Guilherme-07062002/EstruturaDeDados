@@ -14,11 +14,11 @@ void printArray(vector<int> &lista){
 void selectionSort(vector<int> lista){
     int n = lista.size();
     int aux;
-    for(int indiceMenor = 0; indiceMenor < n; indiceMenor++){
-        for(int c = indiceMenor; c < n; c++){
-            if(lista[c] < lista[indiceMenor]){
-                aux = lista[indiceMenor];
-                lista[indiceMenor] = lista[c];
+    for(int menor = 0; menor < n; menor++){
+        for(int c = menor; c < n; c++){
+            if(lista[c] < lista[menor]){
+                aux = lista[menor];
+                lista[menor] = lista[c];
                 lista[c] = aux;
             }
         }
