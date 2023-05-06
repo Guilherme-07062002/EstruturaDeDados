@@ -12,7 +12,7 @@ void printArray(vector<int> lista){
     cout << endl;
 }
 
-void bubbleSort(vector<int> lista){
+vector<int> bubbleSort(vector<int> lista){
     int n = lista.size();
     int aux;
     for(int i = 0; i < n; i++){
@@ -24,6 +24,7 @@ void bubbleSort(vector<int> lista){
             }
         }
     }
+    return lista;
 }
 
 int main(){
@@ -43,13 +44,11 @@ int main(){
 
     auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
-    bubbleSort(lista); // executa o algoritmo que queremos medir o tempo
+    lista = bubbleSort(lista); // executa o algoritmo que queremos medir o tempo
 
     auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
 
     std::chrono::duration<double , std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término
-
-    // Imprimir lista ordenada 
     printArray(lista);
 
     std::cout << "Tempo de execucao do bubble sort: " << diff.count() << " milissegundos\n"; // exibe o tempo de execução
