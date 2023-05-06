@@ -13,21 +13,18 @@ void printArray(vector<int> &lista){
     cout << endl;
 }
 
-vector<int> insertionSort(vector<int> lista){
+void insertionSort(vector<int> &lista){
     int n = lista.size();
     int aux;
-    for(int i = 0; i < n; i++){
-        for(int c = i; c < n; c++){
-            for(int d = c; d > 0; d--){
-                if(lista[d - 1] > lista[d]){
-                    aux = lista[d - 1];
-                    lista[d - 1] = lista[d];
-                    lista[d] = aux;
-                }
-            }
+    for(int i = 1; i < n; i++){
+        aux = lista[i];
+        int j = i - 1;
+        while(j >= 0 && lista[j] > aux){
+            lista[j + 1] = lista[j];
+            j--;
         }
+        lista[j + 1] = aux;
     }
-    return lista;
 }
 
 int main(){
