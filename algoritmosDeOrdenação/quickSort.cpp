@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <random>
+#include <chrono>
 
 using namespace std;
 
@@ -35,21 +37,42 @@ int partition(vector<int> &v, int low, int high){
 	return (i + 1);
 }
 
-void quickSort(vector<int> &v, int low, int high){
+
+vector<int> quickSort(vector<int> &v, int low, int high){
 	if (low < high) { 
 		int pi = partition(v, low, high);
 		quickSort(v, low, pi - 1);
 		quickSort(v, pi + 1, high);
 	}
+	return v;
     
 }
 
 int main(){
-    vector<int> arr = {5, 4, 3, 2, 1};
-    int n = arr.size();
+      // Cria um gerador de números aleatórios usando um valor de semente fixo
+    std::mt19937 rng(1234);
 
-    quickSort(arr, 0, n-1);
-    printArray(arr);
+    // Cria uma distribuição uniforme no intervalo [0, 99]
+    std::uniform_int_distribution<int> dist(0, 99);
+
+    vector<int> lista;
+
+    for(int i = 0; i < 10; i++){
+        int rand_num = dist(rng);
+        lista.push_back(rand_num);
+    }
+    printArray(lista);
+
+    auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
+
+    lista = quickSort(lista, 0, lista.size()); // executa o algoritmo que queremos medir o tempo
+
+    auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
+
+    std::chrono::duration<double , std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término
+    printArray(lista);
+
+    std::cout << "Tempo de execucao do Quick Sort: " << diff.count() << " milissegundos\n"; // exibe o tempo de execução
 
     return 0;
 }

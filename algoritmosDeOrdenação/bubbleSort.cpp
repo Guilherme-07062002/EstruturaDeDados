@@ -51,7 +51,7 @@ int main(){
     std::chrono::duration<double , std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término
     printArray(lista);
 
-    std::cout << "Tempo de execucao do bubble sort: " << diff.count() << " milissegundos\n"; // exibe o tempo de execução
+    std::cout << "Tempo de execucao do Bubble Sort: " << diff.count() << " milissegundos\n"; // exibe o tempo de execução
 
     return 0;
 }

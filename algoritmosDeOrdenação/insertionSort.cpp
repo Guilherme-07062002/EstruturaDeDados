@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <random>
+#include <chrono>
 
 using namespace std;
 
@@ -11,7 +13,7 @@ void printArray(vector<int> &lista){
     cout << endl;
 }
 
-void insertionSort(vector<int> lista){
+vector<int> insertionSort(vector<int> lista){
     int n = lista.size();
     int aux;
     for(int i = 0; i < n; i++){
@@ -25,14 +27,34 @@ void insertionSort(vector<int> lista){
             }
         }
     }
-    printArray(lista);
-    
+    return lista;
 }
 
 int main(){
-    vector<int> lista = {5, 4, 3, 2, 1};
+     // Cria um gerador de números aleatórios usando um valor de semente fixo
+    std::mt19937 rng(1234);
+
+    // Cria uma distribuição uniforme no intervalo [0, 99]
+    std::uniform_int_distribution<int> dist(0, 99);
+
+    vector<int> lista;
+
+    for(int i = 0; i < 10; i++){
+        int rand_num = dist(rng);
+        lista.push_back(rand_num);
+    }
     printArray(lista);
-    insertionSort(lista);
+
+    auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
+
+    lista = insertionSort(lista); // executa o algoritmo que queremos medir o tempo
+
+    auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
+
+    std::chrono::duration<double , std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término
+    printArray(lista);
+
+    std::cout << "Tempo de execucao do Insertion Sort: " << diff.count() << " milissegundos\n"; // exibe o tempo de execução
 
     return 0;
 }
