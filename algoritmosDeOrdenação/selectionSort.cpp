@@ -38,11 +38,14 @@ int main(){
 
     vector<int> lista;
 
-    for(int i = 0; i < 10; i++){
+    int tamanho;
+    cout << "Tamanho do array: ";
+    cin >> tamanho;
+
+    for(int i = 0; i < tamanho; i++){
         int rand_num = dist(rng);
         lista.push_back(rand_num);
     }
-    printArray(lista);
 
     auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
@@ -50,10 +53,10 @@ int main(){
 
     auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
 
-    std::chrono::duration<double , std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término
-    printArray(lista);
-
-    std::cout << "Tempo de execucao do Selection Sort: " << diff.count() << " milissegundos\n"; // exibe o tempo de execução
+    std::chrono::duration<double > diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término
+    
+    cout << "Para um array aleatório de tamanho " << tamanho << ":\n";
+    std::cout << "Tempo de execucao do Selection Sort: " << diff.count() << " segundos\n"; // exibe o tempo de execução
 
     return 0;
 }

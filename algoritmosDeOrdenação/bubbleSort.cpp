@@ -36,22 +36,25 @@ int main(){
 
     vector<int> lista;
 
-    for(int i = 0; i < 10; i++){
+    int tamanho;
+    cout << "Tamanho do array: ";
+    cin >> tamanho;
+
+    for(int i = 0; i < tamanho; i++){
         int rand_num = dist(rng);
         lista.push_back(rand_num);
     }
-    printArray(lista);
 
     auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
-    lista = bubbleSort(lista); // executa o algoritmo que queremos medir o tempo
+    bubbleSort(lista); // executa o algoritmo que queremos medir o tempo
 
     auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
 
-    std::chrono::duration<double , std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término
-    printArray(lista);
+    std::chrono::duration<double> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término
 
-    std::cout << "Tempo de execucao do Bubble Sort: " << diff.count() << " milissegundos\n"; // exibe o tempo de execução
+    cout << "Para um array aleatório de tamanho " << tamanho << ":\n";
+    cout << "Tempo de execucao do Bubble Sort: " << diff.count() << " segundos\n"; // exibe o tempo de execução
 
     return 0;
 }
