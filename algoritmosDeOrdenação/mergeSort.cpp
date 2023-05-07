@@ -80,10 +80,10 @@ int main() {
 
     auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
 
-    std::chrono::duration<double> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término
+    std::chrono::duration<double, std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
 
-    cout << "Para um array aleatório de tamanho " << tamanho << ":\n";
-    std::cout << "Tempo de execucao do Insertion Sort: " << diff.count() << " segundos\n"; // exibe o tempo de execução
+    cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
+    cout << "Tempo de execucao do Merge Sort: \n" << diff.count() / 1000 << " segundos \n" << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
 
     return 0;
 }

@@ -1,0 +1,39 @@
+#!/bin/bash
+
+
+echo 'Informe qual algoritmo deseja executar:
+1 - Bubble Sort
+2 - Selection Sort
+3 - Insertion Sort
+4 - Shell Sort
+5 - Quick Sort
+6 - Merge Sort
+ -> '
+
+read option
+    echo '----------------------------------------------'
+if [ $option -eq 1 ]; then
+    g++ bubbleSort.cpp -o bubble
+    echo 'Executando Bubble Sort...'
+    ./bubble
+elif [ $option -eq 2 ]; then
+    g++ selectionSort.cpp -o selection
+    echo 'Executando Selection Sort...'
+    ./selection
+elif [ $option -eq 3 ]; then
+    g++ insertionSort.cpp -o insertion
+    echo 'Executando Insertion Sort...'
+    ./insertion
+elif [ $option -eq 4 ]; then
+    g++ shellSort.cpp -o shell
+    echo 'Executando Shell Sort...'
+    ./shell
+elif [ $option -eq 5 ]; then
+    g++ quickSort.cpp -o quick
+    echo 'Executando Quick Sort...'
+    ./quick
+elif [ $option -eq 6 ]; then
+    g++ mergeSort.cpp -o merge
+    echo 'Executando Merge Sort...'
+    ./merge
+fi  
