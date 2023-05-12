@@ -211,7 +211,7 @@ int main()
     }
 
     //-------------------------------------------------------------------
-
+    
     auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
     bubbleSort(lista); // executa o algoritmo que queremos medir o tempo
