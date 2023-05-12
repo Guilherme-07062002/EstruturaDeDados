@@ -7,7 +7,7 @@ echo 'Informe qual algoritmo deseja executar:
 4 - Shell Sort
 5 - Quick Sort
 6 - Merge Sort
- -> '
+'
 
 read option
 echo '----------------------------------------------'
