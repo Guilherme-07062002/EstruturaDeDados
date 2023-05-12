@@ -2,8 +2,6 @@
 
 Repositório contendo os códigos relacionadas a disciplina de Estrutura de Dados do 3° período de TSI.
 
-<br>
-
 ## Executando
 
 Foi criado para este repositório um shell script para automatizar o processo de execução e compilação de código, execute o seguinte comando:
@@ -18,8 +16,6 @@ Será exibido no terminal um menu, conforme a imagem abaixo:
 
 Depois apenas insira o número do algoritmo que deseje executar.
 
-<br>
-
 ## Execução manual
 
 Mas caso deseje fazer esse processo manualmente:
@@ -32,8 +28,6 @@ g++ <arquivo.cpp> -o <nome-executavel>
 ```bash
 ./<nome-do-executável>
 ```
-
-<br>
 
 ## Algoritmos contidos neste repositório
 
@@ -56,7 +50,5 @@ g++ <arquivo.cpp> -o <nome-executavel>
   1. Linear Search
   
   1. Binary Search
-
-<br>
 
 Além disso, neste repositório há um arquivo python do jupyter notebook, que por meio das bibliotecas pandas e matplotlib gera gráficos com dados obtidos apartir do tempo de execução em milissegundos de cada algoritmo.
