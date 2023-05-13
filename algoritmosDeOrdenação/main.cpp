@@ -192,18 +192,21 @@ void mergeSort(vector<int> &arr, int l, int r)
 
 int main()
 {
-    // Cria um gerador de números aleatórios usando um valor de semente fixo
+    // Gerador de números aleatórios usando um valor de semente fixo
     std::mt19937 rng(1234);
 
-    // Cria uma distribuição uniforme no intervalo [0, 99]
+    // Cria uma distribuição uniforme no intervalo de 0 a 99
     std::uniform_int_distribution<int> dist(0, 99);
 
+    // Declaração do vetor dinâmico com <vector>
     vector<int> lista;
 
+    // Obtendo do usuário o tamanho do vetor
     int tamanho;
     cout << "Tamanho do array: ";
     cin >> tamanho;
 
+    // Preenchendo vetor com números aleatórios 
     for (int i = 0; i < tamanho; i++)
     {
         int rand_num = dist(rng);
