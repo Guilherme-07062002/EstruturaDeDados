@@ -1,6 +1,6 @@
 # Bubble Sort (Pseudocódigo)
 
-```pseudocodigo
+```pseudocode
 função bubbleSort(vetor)
 inicio
     n <- tamanho do vetor
