@@ -1,28 +1,29 @@
 # Quick Sort (Pseudocódigo)
 
 ```pseudocode
-    função quickSort(vetor, esquerda, direita)
+    função quickSort(vetor, left, right)
     inicio
-        se esquerda < direita então
-            pivot <- particionar(vetor, esquerda, direita)
-            quickSort(vetor, esquerda, pivot - 1)
-            quickSort(vetor, pivot + 1, direita)
+        se left < right então
+            pivot <= particionar(vetor, left, right)
+            quickSort(vetor, pivot + 1, right)
+            quickSort(vetor, left, pivot - 1)
         fim_se
+
+        retorne vetor
     fim
 
-    função particionar(vetor, esquerda, direita)
+    função particionar(vetor, left, right)
     inicio
-        pivot <- vetor[direita]
-        i <- esquerda - 1
-
-        para j de esquerda ate direita - 1 faça
-            se vetor[j] < pivot
-                i <- i + 1
-                trocar(vetor[i], vetor[j])
+        pivot <- right
+        i <- (left - 1)
+        para j de left ate (right - 1) faça
+            se vetor[j] < vetor[pivot] então
+                i += 1
+                troque(vetor[j], vetor[i])
             fim_se
-        fim_para
+        fim_para 
+        troque(vetor[pivot], vetor[i + 1])
 
-        trocar(vetor[i], vetor[direita])
-        retornar i + 1
+        retorne i + 1;
     fim
 ```
