@@ -2,6 +2,7 @@
 #include <vector>
 #include <random>
 #include <chrono>
+#include <fstream>
 
 using namespace std;
 
@@ -23,7 +24,7 @@ void swap(int *a, int *b)
 
 // Algoritmos
 
-void bubbleSort(vector<int> lista)
+void bubbleSort(vector<int> &lista)
 {
     int n = lista.size();
     int aux;
@@ -41,7 +42,7 @@ void bubbleSort(vector<int> lista)
     }
 }
 
-void selectionSort(vector<int> lista)
+void selectionSort(vector<int> &lista)
 {
     int n = lista.size();
     int aux;
@@ -111,7 +112,7 @@ vector<int> quickSort(vector<int> &v, int low, int high)
     return v;
 }
 
-vector<int> shellSort(vector<int> lista)
+vector<int> shellSort(vector<int> &lista)
 {
 
     int tamanho = lista.size();
@@ -198,110 +199,155 @@ int main()
     // Cria uma distribuição uniforme no intervalo de 0 a 99
     std::uniform_int_distribution<int> dist(0, 99);
 
-    // Declaração do vetor dinâmico com <vector>
-    vector<int> lista;
+    // Vetor de algoritmos de ordenação
+    vector<string> algoritmos = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Shell Sort", "Quick Sort"};
 
-    // Obtendo do usuário o tamanho do vetor
-    int tamanho;
-    cout << "Tamanho do array: ";
-    cin >> tamanho;
+    // Vetor de tamanhos dos arrays
+    vector<int> tamanhos = {100, 1000, 10000};
 
-    // Preenchendo vetor com números aleatórios 
-    for (int i = 0; i < tamanho; i++)
+    // Grava os dados de tempo de execução em um arquivo CSV
+    ofstream arquivo("tempos_execucao.csv");
+    arquivo << "Algoritmo,Tamanho do Array,Tempo de Execucao (ms)\n";
+
+    //-------------------------------------------------------------------
+    for (const auto &algoritmo : algoritmos)
     {
-        int rand_num = dist(rng);
-        lista.push_back(rand_num);
+        for (const auto &tamanho : tamanhos)
+        {
+            vector<int> lista(tamanho);
+
+            // Preenchendo vetor com números aleatórios
+            for (int i = 0; i < tamanho; i++)
+            {
+                int rand_num = dist(rng);
+                lista[i] = rand_num;
+            }
+
+            cout << "-----------------------------------------------" << endl;
+            cout << "Tamanho do array: " << tamanho << endl;
+
+            if (algoritmo == "Bubble Sort")
+            {
+                auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
+
+                bubbleSort(lista); // executa o algoritmo que queremos medir o tempo
+
+                auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
+
+                std::chrono::duration<double, std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
+
+                cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
+                cout << "Tempo de execucao do Bubble Sort: \n"
+                     << diff.count() / 1000 << " segundos \n"
+                     << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
+
+                arquivo << algoritmo << "," << tamanho << "," << fmod(diff.count(), 1000) << "\n"; // grava os dados no arquivo
+            }
+            else if (algoritmo == "Selection Sort")
+            {
+
+                //-------------------------------------------------------------------
+
+                auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
+
+                selectionSort(lista); // executa o algoritmo que queremos medir o tempo
+
+                auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
+
+                std::chrono::duration<double, std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
+
+                cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
+                cout << "Tempo de execucao do Selection Sort: \n"
+                     << diff.count() / 1000 << " segundos \n"
+                     << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
+
+                arquivo << algoritmo << "," << tamanho << "," << fmod(diff.count(), 1000) << "\n"; // grava os dados no arquivo
+            }
+            //-------------------------------------------------------------------
+
+            else if (algoritmo == "Insertion Sort")
+            {
+
+                auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
+
+                insertionSort(lista); // executa o algoritmo que queremos medir o tempo
+
+                auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
+
+                std::chrono::duration<double, std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
+
+                cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
+                cout << "Tempo de execucao do Insertion Sort: \n"
+                     << diff.count() / 1000 << " segundos \n"
+                     << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
+
+                arquivo << algoritmo << "," << tamanho << "," << fmod(diff.count(), 1000) << "\n"; // grava os dados no arquivo
+            }
+
+            //-------------------------------------------------------------------
+            else if (algoritmo == "Shell Sort")
+            {
+
+                auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
+
+                lista = shellSort(lista); // executa o algoritmo que queremos medir o tempo
+
+                auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
+
+                std::chrono::duration<double, std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
+
+                cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
+                cout << "Tempo de execucao do Shell Sort: \n"
+                     << diff.count() / 1000 << " segundos \n"
+                     << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
+
+                arquivo << algoritmo << "," << tamanho << "," << fmod(diff.count(), 1000) << "\n"; // grava os dados no arquivo
+            }
+
+            //-------------------------------------------------------------------
+
+            else if (algoritmo == "Quick Sort")
+            {
+
+                auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
+
+                lista = quickSort(lista, 0, lista.size() - 1); // executa o algoritmo que queremos medir o tempo
+
+                auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
+
+                std::chrono::duration<double, std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
+
+                cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
+                cout << "Tempo de execucao do Quick Sort: \n"
+                     << diff.count() / 1000 << " segundos \n"
+                     << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
+
+                arquivo << algoritmo << "," << tamanho << "," << fmod(diff.count(), 1000) << "\n"; // grava os dados no arquivo
+            }
+
+            //-------------------------------------------------------------------
+
+            else if (algoritmo == "Merge Sort")
+            {
+
+                auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
+
+                mergeSort(lista, 0, lista.size() - 1); // executa o algoritmo que queremos medir o tempo
+
+                auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
+
+                std::chrono::duration<double, std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
+
+                cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
+                cout << "Tempo de execucao do Merge Sort: \n"
+                     << diff.count() / 1000 << " segundos \n"
+                     << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
+
+                arquivo << algoritmo << "," << tamanho << "," << fmod(diff.count(), 1000) << "\n"; // grava os dados no arquivo
+            }
+        }
     }
-
-    //-------------------------------------------------------------------
-    
-    auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
-
-    bubbleSort(lista); // executa o algoritmo que queremos medir o tempo
-
-    auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
-
-    std::chrono::duration<double, std::milli> diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
-
-    cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
-    cout << "Tempo de execucao do Bubble Sort: \n"
-         << diff.count() / 1000 << " segundos \n"
-         << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
-
-    //-------------------------------------------------------------------
-
-    start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
-
-    selectionSort(lista); // executa o algoritmo que queremos medir o tempo
-
-    end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
-
-    diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
-
-    cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
-    cout << "Tempo de execucao do Selection Sort: \n"
-         << diff.count() / 1000 << " segundos \n"
-         << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
-
-    //-------------------------------------------------------------------
-
-    start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
-
-    insertionSort(lista); // executa o algoritmo que queremos medir o tempo
-
-    end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
-
-    diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
-
-    cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
-    cout << "Tempo de execucao do Insertion Sort: \n"
-         << diff.count() / 1000 << " segundos \n"
-         << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
-
-    //-------------------------------------------------------------------
-
-    start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
-
-    lista = shellSort(lista); // executa o algoritmo que queremos medir o tempo
-
-    end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
-
-    diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
-
-    cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
-    cout << "Tempo de execucao do Shell Sort: \n"
-         << diff.count() / 1000 << " segundos \n"
-         << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
-
-    //-------------------------------------------------------------------
-
-    start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
-
-    lista = quickSort(lista, 0, lista.size()); // executa o algoritmo que queremos medir o tempo
-
-    end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
-
-    diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
-
-    cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
-    cout << "Tempo de execucao do Quick Sort: \n"
-         << diff.count() / 1000 << " segundos \n"
-         << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
-
-    //-------------------------------------------------------------------
-
-    start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
-
-    mergeSort(lista, 0, lista.size() - 1); // executa o algoritmo que queremos medir o tempo
-
-    end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
-
-    diff = end - start; // calcula a diferença entre o tempo de início e o tempo de término em milissegundos
-
-    cout << "\nPara um array aleatório de tamanho " << tamanho << endl;
-    cout << "Tempo de execucao do Merge Sort: \n"
-         << diff.count() / 1000 << " segundos \n"
-         << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
+    arquivo.close();
 
     return 0;
 }
