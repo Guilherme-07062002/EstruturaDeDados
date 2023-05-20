@@ -2,7 +2,6 @@
 #include <vector>
 #include <random>
 #include <chrono>
-#include <fstream>
 
 using namespace std;
 
@@ -66,12 +65,6 @@ int main()
     cout << "Tempo de execucao do Bubble Sort: \n"
          << diff.count() / 1000 << " segundos \n"
          << fmod(diff.count(), 1000) << " milissegundos\n"; // exibe o tempo de execução em segundos e milissegundos
-
-     // Grava os dados de tempo de execução em um arquivo CSV
-    ofstream arquivo("tempos_execucao.csv");
-    arquivo << "Tamanho do Array,Tempo de Execucao (ms)\n";
-    arquivo << tamanho << "," << diff.count() << "\n";
-    arquivo.close();
 
     return 0;
 }
