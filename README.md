@@ -16,6 +16,10 @@ Será exibido no terminal um menu, conforme a imagem abaixo:
 
 Depois apenas insira o número do algoritmo que deseje executar.
 
+## Geração de tabelas
+
+Neste código foi implementado um mecanismo que por meio da biblioteca **fstream** do C++, permite que os tempos de execução retornados, sejam persistidos em um arquivo .csv, este pode ser baixado e utilizado em alguma outra aplicação como o Excel para a análise dos dados. No entanto, caso o usuário deseje, no arquivo jupyter notebook localizado na pasta raiz deste projeto, existe um script em python que constroi os graficos com os dados retornados pela aplicação, por meio do arquivo .csv gerado. 
+
 ## Execução manual
 
 Mas caso deseje fazer esse processo manualmente:
@@ -51,4 +55,3 @@ g++ <arquivo.cpp> -o <nome-executavel>
   
   1. Binary Search
 
-Além disso, neste repositório há um arquivo python do jupyter notebook, que por meio das bibliotecas pandas e matplotlib gera gráficos com dados obtidos apartir do tempo de execução em milissegundos de cada algoritmo.
