@@ -45,21 +45,22 @@ void bubbleSort(vector<int> &lista)
 void selectionSort(vector<int> &lista)
 {
     int n = lista.size();
-    int aux;
-    for (int menor = 0; menor < n; menor++)
+    for (int i = 0; i < n - 1; i++)
     {
-        for (int c = menor; c < n; c++)
+        int menor = i;
+        for (int j = i + 1; j < n; j++)
         {
-            if (lista[c] < lista[menor])
+            if (lista[j] < lista[menor])
             {
-                aux = lista[menor];
-                lista[menor] = lista[c];
-                lista[c] = aux;
+                menor = j;
             }
+        }
+        if (menor != i)
+        {
+            swap(lista[i], lista[menor]);
         }
     }
 }
-
 void insertionSort(vector<int> &lista)
 {
     int n = lista.size();
@@ -198,31 +199,44 @@ int main()
     // Cria uma distribuição uniforme no intervalo de 0 a 1000
     std::uniform_int_distribution<int> dist(0, 1000);
 
-    // Vetor de algoritmos de ordenação
-    vector<string> algoritmos = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Shell Sort", "Quick Sort", "Merge Sort"};
-
     // Vetor de tamanhos dos arrays
     vector<int> tamanhos = {100, 1000, 10000, 100000};
+    vector<vector<int>> vetores;         // Vetor de vetores
+    vector<vector<int>> vetoresOriginal; // Cópia do vetor de vetores
+
+    for (const auto &tamanho : tamanhos)
+    {
+        vector<int> lista(tamanho);
+
+        // Preenchendo vetor com números aleatórios
+        for (int i = 0; i < tamanho; i++)
+        {
+            int rand_num = dist(rng);
+            lista[i] = rand_num;
+        }
+
+        vetores.push_back(lista); // Adiciona uma cópia do vetor `lista` ao vetor `vetores`
+    }
+    vetoresOriginal = vetores;
+
+    // Vetor de algoritmos de ordenação
+    vector<string> algoritmos = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Shell Sort", "Quick Sort", "Merge Sort"};
 
     // Grava os dados de tempo de execução em um arquivo CSV
     ofstream arquivo("tempos_execucao.csv");
     arquivo << "Algoritmo,Tamanho do Array,Tempo de Execucao (ms)\n";
 
+    int c = 0;
+
     //-------------------------------------------------------------------
     for (const auto &algoritmo : algoritmos)
     {
+        c = 0; // Reinicializa o valor de `c` para cada algoritmo
+
         for (const auto &tamanho : tamanhos)
         {
-            vector<int> lista(tamanho);
 
-            // Preenchendo vetor com números aleatórios
-            for (int i = 0; i < tamanho; i++)
-            {
-                int rand_num = dist(rng);
-                lista[i] = rand_num;
-            }
-
-            vector<int> listaOriginal = lista;
+            vetores[c] = vetoresOriginal[c];
 
             cout << "-----------------------------------------------" << endl;
             cout << "Tamanho do array: " << tamanho << endl;
@@ -232,11 +246,9 @@ int main()
 
                 //-------------------------------------------------------------------
 
-                lista = listaOriginal;
-
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
-                bubbleSort(lista); // executa o algoritmo que queremos medir o tempo
+                bubbleSort(vetores[c]); // executa o algoritmo que queremos medir o tempo
 
                 auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
 
@@ -254,11 +266,9 @@ int main()
 
                 //-------------------------------------------------------------------
 
-                lista = listaOriginal;
-
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
-                selectionSort(lista); // executa o algoritmo que queremos medir o tempo
+                selectionSort(vetores[c]); // executa o algoritmo que queremos medir o tempo
 
                 auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
 
@@ -277,11 +287,9 @@ int main()
 
                 //-------------------------------------------------------------------
 
-                lista = listaOriginal;
-
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
-                insertionSort(lista); // executa o algoritmo que queremos medir o tempo
+                insertionSort(vetores[c]); // executa o algoritmo que queremos medir o tempo
 
                 auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
 
@@ -300,11 +308,9 @@ int main()
 
                 //-------------------------------------------------------------------
 
-                lista = listaOriginal;
-
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
-                shellSort(lista); // executa o algoritmo que queremos medir o tempo
+                shellSort(vetores[c]); // executa o algoritmo que queremos medir o tempo
 
                 auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
 
@@ -323,11 +329,9 @@ int main()
 
                 //-------------------------------------------------------------------
 
-                lista = listaOriginal;
-
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
-                quickSort(lista, 0, lista.size() - 1); // executa o algoritmo que queremos medir o tempo
+                quickSort(vetores[c], 0, vetores[c].size() - 1); // executa o algoritmo que queremos medir o tempo
 
                 auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
 
@@ -346,11 +350,9 @@ int main()
 
                 //-------------------------------------------------------------------
 
-                lista = listaOriginal;
-
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
-                mergeSort(lista, 0, lista.size() - 1); // executa o algoritmo que queremos medir o tempo
+                mergeSort(vetores[c], 0, vetores[c].size() - 1); // executa o algoritmo que queremos medir o tempo
 
                 auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
 
@@ -363,6 +365,7 @@ int main()
 
                 arquivo << algoritmo << "," << tamanho << "," << fmod(diff.count(), 1000) << "\n"; // grava os dados no arquivo
             }
+            c++;
         }
     }
     arquivo.close();
