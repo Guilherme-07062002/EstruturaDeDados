@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Função para verificar se o pacote nbexec está instalado
+check_nbexec_installed() {
+    if ! command -v nbexec &> /dev/null; then
+        return 1
+    fi
+    return 0
+}
+
 echo -n 'Executando todos os algoritmos de ordenação'
 sleep 1
 echo -n '.'
@@ -22,8 +30,17 @@ echo -n '.'
 sleep 1
 echo '.'
 
-# Iniciar o Jupyter Notebook
-cd ../../jupyter_notebook
+# Verificar se o nbexec está instalado
+if ! check_nbexec_installed; then
+    echo 'O pacote nbexec não está instalado. Instalando...'
+    pip install nbexec
+fi
 
+# Abrir arquivo Jupyter Notebook no vsCode
+cd ../../jupyter_notebook
 code ./graficosDeTabela.ipynb
+
+# Executar o notebook usando o nbexec
+nbexec ./graficosDeTabela.ipynb
+
 
