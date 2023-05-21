@@ -200,10 +200,10 @@ int main()
     std::uniform_int_distribution<int> dist(0, 99);
 
     // Vetor de algoritmos de ordenação
-    vector<string> algoritmos = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Shell Sort", "Quick Sort"};
+    vector<string> algoritmos = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Shell Sort", "Quick Sort", "Merge Sort"};
 
     // Vetor de tamanhos dos arrays
-    vector<int> tamanhos = {100, 1000, 10000};
+    vector<int> tamanhos = {100, 1000, 10000, 100000};
 
     // Grava os dados de tempo de execução em um arquivo CSV
     ofstream arquivo("tempos_execucao.csv");
@@ -290,7 +290,7 @@ int main()
 
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
-                lista = shellSort(lista); // executa o algoritmo que queremos medir o tempo
+                shellSort(lista); // executa o algoritmo que queremos medir o tempo
 
                 auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
 
@@ -311,7 +311,7 @@ int main()
 
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
-                lista = quickSort(lista, 0, lista.size() - 1); // executa o algoritmo que queremos medir o tempo
+                quickSort(lista, 0, lista.size() - 1); // executa o algoritmo que queremos medir o tempo
 
                 auto end = std::chrono::high_resolution_clock::now(); // marca o tempo de término
 
