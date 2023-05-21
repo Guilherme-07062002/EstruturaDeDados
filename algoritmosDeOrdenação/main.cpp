@@ -63,15 +63,14 @@ void selectionSort(vector<int> &lista)
 void insertionSort(vector<int> &lista)
 {
     int n = lista.size();
-    int aux;
-    for (int i = 1; i < n; i++)
+    for (int i = 1; i < n; ++i)
     {
-        aux = lista[i];
+        int aux = lista[i];
         int j = i - 1;
         while (j >= 0 && lista[j] > aux)
         {
             lista[j + 1] = lista[j];
-            j--;
+            --j;
         }
         lista[j + 1] = aux;
     }
@@ -196,8 +195,8 @@ int main()
     // Gerador de números aleatórios usando um valor de semente fixo
     std::mt19937 rng(1234);
 
-    // Cria uma distribuição uniforme no intervalo de 0 a 99
-    std::uniform_int_distribution<int> dist(0, 99);
+    // Cria uma distribuição uniforme no intervalo de 0 a 1000
+    std::uniform_int_distribution<int> dist(0, 1000);
 
     // Vetor de algoritmos de ordenação
     vector<string> algoritmos = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Shell Sort", "Quick Sort", "Merge Sort"};
@@ -223,11 +222,18 @@ int main()
                 lista[i] = rand_num;
             }
 
+            vector<int> listaOriginal = lista;
+
             cout << "-----------------------------------------------" << endl;
             cout << "Tamanho do array: " << tamanho << endl;
 
             if (algoritmo == "Bubble Sort")
             {
+
+                //-------------------------------------------------------------------
+
+                lista = listaOriginal;
+
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
                 bubbleSort(lista); // executa o algoritmo que queremos medir o tempo
@@ -248,6 +254,8 @@ int main()
 
                 //-------------------------------------------------------------------
 
+                lista = listaOriginal;
+
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
                 selectionSort(lista); // executa o algoritmo que queremos medir o tempo
@@ -263,10 +271,13 @@ int main()
 
                 arquivo << algoritmo << "," << tamanho << "," << fmod(diff.count(), 1000) << "\n"; // grava os dados no arquivo
             }
-            //-------------------------------------------------------------------
 
             else if (algoritmo == "Insertion Sort")
             {
+
+                //-------------------------------------------------------------------
+
+                lista = listaOriginal;
 
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
@@ -284,9 +295,12 @@ int main()
                 arquivo << algoritmo << "," << tamanho << "," << fmod(diff.count(), 1000) << "\n"; // grava os dados no arquivo
             }
 
-            //-------------------------------------------------------------------
             else if (algoritmo == "Shell Sort")
             {
+
+                //-------------------------------------------------------------------
+
+                lista = listaOriginal;
 
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
@@ -304,10 +318,12 @@ int main()
                 arquivo << algoritmo << "," << tamanho << "," << fmod(diff.count(), 1000) << "\n"; // grava os dados no arquivo
             }
 
-            //-------------------------------------------------------------------
-
             else if (algoritmo == "Quick Sort")
             {
+
+                //-------------------------------------------------------------------
+
+                lista = listaOriginal;
 
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
@@ -325,10 +341,12 @@ int main()
                 arquivo << algoritmo << "," << tamanho << "," << fmod(diff.count(), 1000) << "\n"; // grava os dados no arquivo
             }
 
-            //-------------------------------------------------------------------
-
             else if (algoritmo == "Merge Sort")
             {
+
+                //-------------------------------------------------------------------
+
+                lista = listaOriginal;
 
                 auto start = std::chrono::high_resolution_clock::now(); // marca o tempo de início
 
