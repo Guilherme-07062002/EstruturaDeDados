@@ -1,0 +1,25 @@
+Algoritmo,Tamanho do Array,Tempo de Execucao (ms)
+Bubble Sort,100,0.145073
+Bubble Sort,1000,16.6036
+Bubble Sort,10000,707.832
+Bubble Sort,100000,911.55
+Selection Sort,100,0.101036
+Selection Sort,1000,12.0774
+Selection Sort,10000,644.43
+Selection Sort,100000,358.587
+Insertion Sort,100,0.036068
+Insertion Sort,1000,3.06264
+Insertion Sort,10000,298.998
+Insertion Sort,100000,628.05
+Shell Sort,100,0.025572
+Shell Sort,1000,0.386284
+Shell Sort,10000,6.14604
+Shell Sort,100000,75.1864
+Quick Sort,100,0.067113
+Quick Sort,1000,0.972109
+Quick Sort,10000,50.4221
+Quick Sort,100000,388.315
+Merge Sort,100,0.092817
+Merge Sort,1000,1.03472
+Merge Sort,10000,11.5079
+Merge Sort,100000,124.73

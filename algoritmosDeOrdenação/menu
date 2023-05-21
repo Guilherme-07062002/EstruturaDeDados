@@ -9,7 +9,9 @@ echo 'Informe qual algoritmo deseja executar:
 6 - Merge Sort
 '
 
+echo -n '> ' 
 read option
+
 echo '----------------------------------------------'
 if [ $option -eq 1 ]; then
     cd ./bubbleSort

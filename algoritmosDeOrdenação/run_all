@@ -1,0 +1,29 @@
+#!/bin/bash
+
+echo -n 'Executando todos os algoritmos de ordenação'
+sleep 1
+echo -n '.'
+sleep 1
+echo -n '.'
+sleep 1
+echo '.'
+
+# Compilar e executar o arquivo .cpp
+cd ./principal
+g++ main.cpp -o main
+./main
+
+echo '--------------------------------------------------------'
+echo -n 'Abrindo arquivo Jupyter Notebook'
+sleep 1
+echo -n '.'
+sleep 1
+echo -n '.'
+sleep 1
+echo '.'
+
+# Iniciar o Jupyter Notebook
+cd ../../jupyter_notebook
+
+code ./graficosDeTabela.ipynb
+
